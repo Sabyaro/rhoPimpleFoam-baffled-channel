@@ -1,0 +1,134 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2306                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+scale   0.001;
+
+
+vertices 
+(
+	(0 0 0) 
+	(-1 0 0)  
+	(-1 1 0)  
+	(0 1 0)		
+
+	(0 2.5 0) 
+	(-1 2.5 0)  
+
+	(3 0 0)   
+	(3 2.5 0)  
+	(-2.5 2.5 0)  
+	(-2.5 0 0)  
+	(3 1 0) 
+	(-2.5 1 0)  
+
+	(0 0 0.1)   
+	(-1 0 0.1)  
+	(-1 1 0.1)  
+	(0 1 0.1)   
+
+	(0 2.5 0.1)   
+	(-1 2.5 0.1)   
+
+	(3 0 0.1)    
+	(3 2.5 0.1)   
+	(-2.5 2.5 0.1)  
+	(-2.5 0 0.1)   
+	(3 1 0.1)   
+	(-2.5 1 0.1)  
+);
+
+blocks 
+(
+	hex (3 10 7 4 15 22 19 16) (100 100 1) simpleGrading (1 1 1)
+	hex (0 6 10 3 12 18 22 15) (100 100 1) simpleGrading (1 1 1)
+	hex (3 4 5 2 15 16 17 14) (100 100 1) simpleGrading (1 1 1)
+	hex (9 1 2 11 21 13 14 23) (100 100 1) simpleGrading (1 1 1)
+	hex (2 5 8 11 14 17 20 23) (100 100 1) simpleGrading (1 1 1)
+); 
+
+boundary 
+(
+	inlet
+	{
+		type patch; 
+		faces
+		(
+			(11 8 20 23)
+			(9 11 23 21)
+		);
+	}
+
+	outlet
+	{
+		type patch; 
+		faces
+		(
+			(6 10 22 18)
+			(10 7 19 22)
+		);
+	}
+
+	upperWall 
+	{
+		type wall; 
+		faces
+		(
+			(5 8 20 17)
+			(4 5 17 16) 
+			(7 4 16 19)
+		);
+	}
+
+	lowerWall 
+	{
+		type wall; 
+		faces
+		(
+			(0 6 18 12)
+			(1 13 21 9)  
+		);
+	}
+
+	baffleWallfront
+	{
+		type wall; 
+		faces
+		(
+			(1 2 14 13) 
+		);
+	}
+	baffleWallup
+	{
+		type wall; 
+		faces
+		(
+			(2 3 15 14) 
+		);
+	}
+	baffleWallback
+	{
+		type wall; 
+		faces
+		(
+			(0 3 15 12)  
+		);
+	}
+	
+);
+
+
+
+// ************************************************************************* //
